@@ -1,0 +1,43 @@
+﻿@page
+@model SecondProject.Pages.NominaModel
+@{
+}
+
+<h1>Lista de Empleados</h1>
+<hr />
+
+<table class="table table-striped">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Cargo</th>
+            <th scope="col">Salario</th>
+            <th scope="col">Descuento AFP</th>
+            <th scope="col">Descuento IRS</th>
+            <th scope="col">Descuento ARS</th>
+            <th scope="col">Total Descuento</th>
+            <th scope="col">Salario Neto</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @for(int i= 0; i < Model.Employee.Count; i++)
+        {
+        <tr>
+            <th scope="row">@Html.Label((i + 1).ToString())</th>
+            <td>@Html.Label(Model.Employee[i].nombres)</td>
+            <td>@Html.Label(Model.Employee[i].apellidos)</td>
+            <td>@Html.Label(Model.Employee[i].cargo)</td>
+            <td class="text-right">@String.Format("{0:#,##0.00}", @Model.Employee[i].salario)</td>
+            <td class="text-right">@String.Format("{0:#,##0.00}", @Model.Employee[i].afp_descuento())</td>
+            <td class="text-right">@String.Format("{0:#,##0.00}", @Model.Employee[i].irs_descuento())</td>
+            <td class="text-right">@String.Format("{0:#,##0.00}", @Model.Employee[i].ars_descuento())</td>
+            <td class="text-right">@String.Format("{0:#,##0.00}", @Model.Employee[i].total_descuentos())</td>
+            <td class="text-right">@String.Format("{0:#,##0.00}", @Model.Employee[i].salario_neto())</td>
+        </tr>
+        }
+
+    </tbody>
+</table>
